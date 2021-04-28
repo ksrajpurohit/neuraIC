@@ -34,6 +34,9 @@ class _ImageCaptureState extends State<ImageCapture> {
       _progressIndicator = true;
     });
     String base64Image = _covertBase64(image);
+    /// if app running on emulator and server running on localhost then url=>http://10.0.2.2:5000/getCaption
+    /// if app running on real device and server running on local host then url=>http://{pc ip}:5000/getCaption
+    /// if app running on {emulator or real device } and server running on remote machine the url=>http://{public ip or dns of remote server}/getCaption
     var url = Uri.parse('http://10.0.2.2:5000/getCaption');
     var response = await http.post(url, body: {'image': base64Image});
     print('Response status: ${response.statusCode}');
