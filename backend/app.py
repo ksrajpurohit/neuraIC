@@ -1,4 +1,5 @@
 from flask import Flask , request ,render_template
+from getcaption import NeuraIC
 import PIL.Image as Image
 import base64
 import io
@@ -20,7 +21,7 @@ def getCaption():
     decodedImage = base64.b64decode(encodedImage)
     # byte image is loaded as PIL jpeg object
     image = Image.open(io.BytesIO(decodedImage))
-    return "Childrens Running in a Garden"
+    return NeuraIC(image)
 
 if __name__ == '__main__':
     app.run(debug=True)
